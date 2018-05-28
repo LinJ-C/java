@@ -1,0 +1,237 @@
+继承
+
+public class Employee {
+  private String name;
+  private MyDate birthDate;
+  private float  salary;
+  public Employee(String name, MyDate DoB, float salary) {
+    this.name = name;
+    this.birthDate = DoB;
+    this.salary = salary;  }
+  public String getDetails() {
+    return "Name: " + name + "\nSalary: " + salary + "\nBirth Date: " + birthDate;  }}
+
+
+class Manager{
+  private String name;
+  private MyDate birthDate;
+  private float  salary;
+  private String department; 
+public Manager(String name, MyDate DoB,
+		 float salary, String dept) {
+    this.name = name;
+    this.birthDate = DoB;
+    this.salary = salary;
+    this.department = dept;  }
+  public String getDetails() {
+    return "Name: " + name + "\nSalary: " + salary + "\nBirth Date: " + birthDate“+\nDepartment: " + department;  }}
+我们发现，实际上经理本身是雇员，所以经理类拥有雇员类的所有属性，但除了有
+雇员类的属性外，还有自己的属性department;
+为了简化类的定义，Java 实现下面的语法现象：
+
+public class Manager extends Employee {
+  private String department;
+  public Manager(String name, MyDate DoB,
+		 float salary, String dept) {
+    super(name, DoB, salary);
+    this.department = dept;
+  }
+
+  public String getDetail() {
+    return super.getDetails() + "\nDepartment: " + department;
+  }
+}
+
+这就是继承。被继承的类叫做父类，继承别人的类叫做子类。子类继承
+了父类的所有属性和方法。
+
+
+
+承的书面格式：
+class SubClass extends SuperClass {
+    …
+}
+
+关于继承的几个点注意：
+1：通过继承可以简化类的定义；
+2： Java 只支持单重继承，不允许多重继承。也就是说不允许一个类有两个父类。
+3：可以允许多层继承。
+例如：
+class A{}
+class B extends A{}
+class C extends B{}
+
+4： 子类继承了所有父类的属性和方法，但不继承父类的构造函数。（因为构造函数不是方法）
+        如果要在子类的构造函数中使用父类的构造函数，可以使用super关键字。
+      
+   class Student extends Person{
+          public Student(String name,int age,String school){
+                     super(name,age);
+                     this.school=school;
+          }
+  }
+5: 如果子类的构造函数没有显式的调用父类父类构造方法，也没有this
+关键字调用本类的其他构造函数，则系统默认情况下，相当于有一个
+隐式的super()调用。
+
+public class extends A{
+     public B()
+  {
+      super();//有没有这句，效果都是一样的。
+     ....
+  }
+
+
+Object 类
+Java 提供了一个根类Object 类，
+如果一个类，没有声明extends 其它类，就默认继承了Object 类
+也就是说：
+public class A{}
+和public class A extends Object{}
+效果是一样的。
+所以我们可以一个结论，任何类都是直接或间接的继承了Object 类
+所以任何类都继承了Object 类拥有的属性和方法。
+Object 类是所有Java 类的根类。
+这就是为什么我原来介绍的任何都可以对象名.equals()和finalize()的原因。
+
+
+
+函数的重写(override).
+public class Employee {
+  private String name;
+  private MyDate birthDate;
+  private float  salary;
+  public Employee(String name, MyDate DoB, float salary) {
+    this.name = name;
+    this.birthDate = DoB;
+    this.salary = salary;  }
+  public String getDetails() {
+    return "Name: " + name + "\nSalary: " + salary + "\nBirth Date: " + birthDate;  }}
+
+
+class Manager{
+  private String name;
+  private MyDate birthDate;
+  private float  salary;
+  private String department; 
+public Manager(String name, MyDate DoB,
+		 float salary, String dept) {
+    this.name = name;
+    this.birthDate = DoB;
+    this.salary = salary;
+    this.department = dept;  }
+  public String getDetails() {
+    return "Name: " + name + "\nSalary: " + salary + "\nBirth Date: " + birthDate“+\nDepartment: " + department;  }}
+
+子类中重写的方法和父类中被重写的方法要具有相同的名字，相同的参数表和相同的返回类型
+另外，子类的方法，不能比父类的方法有更严格的访问限制，
+如果父类的方法的修饰符是public 的，子类重写该方法的修饰符号不能够
+private .
+
+
+super
+super用来引用当前对象的父类
+(1) 访问父类被隐藏的成员变量，如：
+        super.variable; 
+(2)调用父类中被重写的方法，如：
+        super.Method([paramlist]);
+(3)调用父类的构造函数，如：
+        super([paramlist]);
+class SuperClass{
+    int x;
+    SuperClass( ) {
+     x=3;
+   System.out.println("in SuperClass : x=" +x);
+   }
+  void doSomething( ) {
+  System.out.println("in SuperClass.doSomething()");
+  }
+}
+class SubClass extends SuperClass {
+    int x;
+    SubClass( ) {
+        super( );    //call constructor of superclass
+        x=5;       //super( ) 要放在方法中的第一句
+       System.out.println("in SubClass  :x="+x);
+   }
+void doSomething( ) {
+super.doSomething( ); //call method of superclass
+System.out.println("in SubClass.doSomething()");
+System.out.println("super.x="+super.x+"sub.x="+x);
+    }
+}
+public class inheritance {
+   public static void main(String args[]) {
+    SubClass subC=new SubClass();
+    subC.doSomething();
+   }
+}
+
+
+
+子类对象的初始化：
+构造函数的执行，按下面五个步骤来执行：
+1：绑定构造函数参数；
+2：看构造函数时候有this()调用，如果有，执行this()调用，执行完后，
+直接转向第五步；如果没有，继续向下执行；
+3：执行显式或隐式的3
+
+4:   执行直接初始化语句；
+5： 执行构造函数的函数体；
+
+例题：
+public class Object{
+     ....
+    public Object(){}
+    ....
+}
+
+public class Employee extends Object{
+    private String name;
+    private double salary=15000.00;
+    private Date birthDate;
+    
+   public Employee(String n,Date DoB){
+      //隐式的super()
+        name=n;
+        birthDate=DoB;
+    }
+    public Employee(String n){
+        this(n,null);
+     }
+}
+
+   public class Manager extends Employee{
+       private String department;
+       
+       public Manager(String n,String d){
+             super(n);
+             department=d;
+     }
+}
+
+以上面程序提供的类为基础我们来分析代码new Manager("Joe Smith","Sales");
+的执行过程。
+首先，为Manager对象分配空间，默认初始化。
+1....开始执行Manager("Joe Smith","Sales")构造函数，开始按照我们预定
+执行构造函数的五个步骤开始分析。
+1.1 绑定构造函数的参数;n="Joe Smith"; d="Sales";
+1.2 时候有this(),没有，继续向下；
+1.3 显式的执行super(n);开始了一个新的构造函数。
+　　1.3.1　绑定构造函数的参数n="Joe Smith";
+        1.3.2    有this(n,null)调用。开始了一个新的构造函数；
+　　　　1.3.2.1　绑定构造函数的参数;n="Joe Smith";DoB=null;
+                1.3.2.2    没有this()调用，向下执行;
+                1.3.2.3    隐式的执行super();又开始一个新的构造函数；
+　　　　　　     1.3.2.3.1　没有参数绑定;
+　　　　　　　 1.3.2.3.2    没有this();
+                             1.3.2.3.3    因为已经到达Object()所以没有super()调用;
+                             1.3.2.3.4    没有直接初始化语句；
+　　　　　　　 1.3.2.3.5    没有函数体语句；返回
+　　　   1.3.2.4    执行直接初始化语句；salary=15000.00;
+               1.3.2.5    执行构造函数体语句；birthDate=null;返回；
+　   1.3.3     跳过;
+       1.3.4     跳过；
+　   1.3.5     执行构造函数体语句；没有，返回；
+1.4 执行Manager类的直接初始化语句；没有；
+1.5 执行Manager("Joe Smith","Sales")构造函数的函数体语句；department="Sales";

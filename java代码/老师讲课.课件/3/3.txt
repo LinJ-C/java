@@ -1,0 +1,208 @@
+3、运算符号
+
+	 注意：运算符号的优先级
+
+	繁琐 。。不重要。。。
+
+	直觉   直觉不够 括号凑
+
+4、语句
+
+	分支
+		
+		if...
+
+		情况1：if(){}
+
+		情况2：
+
+			if(条件1){}
+
+			else  {     }
+
+		情况3：
+
+			if(  x>条件1){}
+
+			else if(条件2){}
+
+			else if(条件3){}
+			...
+
+			else{}
+
+
+		个税比较典型  
+		奖金计算；
+
+	switch(条件表达式){
+
+		case  条件1：  代码1；break;
+		case  条件2：  代码2；break;
+		case  条件3：  代码3；break;
+
+		....
+
+		case  条件x：  代码x；break;
+
+		default :      代码块; break;
+
+
+
+	}
+	
+		switch分支的语句  简单，让程序清晰；
+		让过代码过多，用if ....else  if(){}
+
+	x = 贷款倍率 （1.1  1.2  1.3
+
+	switch(x){
+
+		case 1.1:  gowindow(3);break;
+		case 1.2:  gowindow(6);break;
+		case 1.3:  gowindow(12);break;
+
+		case 1.4:  gowindow(8);break;
+		case 1.5:  gowindow(4);break;
+	
+		
+	}
+
+	1.7    ===> int  char String 
+
+	老版本的jdk 只支持  整数  和  字符  
+
+	后来支持字符串
+
+	String str=;
+
+	switch(str){
+
+		case "北京":  gowindow(3);break;
+		case  "天津":  gowindow(6);break;
+		case  "重庆":  gowindow(12);break;
+		case "上海":  gowindow(8);break;
+	
+	}
+
+	建议就是：能if 就  switch()少用；
+			
+	case 穿透，不要忘了写break;
+
+	
+
+	循环
+
+		初始化;
+		
+		while(判断条件){
+			
+				执行代码;
+
+				改变代码；
+
+		}    
+			
+
+		for(初始句;判断语句;改变语句 ){
+
+			执行语句;
+
+		}
+
+
+		循环再一个比较确定的封闭空间，
+
+		建议用for();
+
+
+跳转
+			
+	goto; (java没有goto)  goto不好，太灵活，让程序可读性下降；
+
+
+		break;     
+
+		continue;
+
+		return;    结束该函数的执行；返回；
+
+
+		
+
+		int  xi = 1...7;
+
+		int  class = 1...40;
+
+		int  students = 1...60;
+
+	加来来问孩子那个班？
+
+
+	name ="张伟";
+
+	for(int xi =1;xi<=7;xi++){
+
+		for(int class = 1;class<=40;class++){
+
+			for(int id=1;id<=60;id++){
+
+
+				if(students[xi][class][id]=="张伟"){
+
+					break;//结束本层循环；
+	
+					continue ;结束本次循环;
+
+					return;
+				}
+				拉出去枪毙；
+
+		}
+
+
+			}
+
+
+		}
+
+	
+
+	得到  系 班  学好
+
+	查找宿舍
+
+	告诉家长宿舍；
+
+
+		
+	.....
+
+	
+	a:for(....){}
+	    b:for(...){}
+	
+	       c:for(...){
+
+			if(条件){
+			
+			break a; 跳出a标识的循环；
+			break b;跳出b标识的循环；
+			break c;跳出c标识的循环；
+
+			continue a; 
+			continue b;
+			continue c;
+			
+			}
+			
+		}
+
+	
+	上面两个例题：解决 所有的循环跳转问题；
+
+		
+
+
+
+

@@ -1,0 +1,423 @@
+
+
+1、补充构造函数
+
+
+	Student  tom   = new  Student("123","张三",23);
+
+
+
+	Student  tom2 =	new Student();  //
+
+
+	一个类，默认情况下，系统自动隐含的有无参构造函数；
+
+	如果，用户自己编写了其它构造，则不提供无参构造。
+
+
+	//  当年的设计者，希望如果你设计构造，你就设计周全，
+	//如果不设计， 干脆，什么都不要做。
+
+		
+	千万注意：构造函数   是我们自己设计的，
+
+		但是，构造函数，不是自己调用的；
+
+		用户自己不可能直接调用构造。
+
+
+		
+
+
+2、this 关键字
+
+		
+		1、在类中区分 重名的 属性和普通变量 
+
+				this.名字  表示 ===〉属性
+
+				
+		2、在类的一个构造函数中，调用另外一个构造函数
+
+			this(******);
+
+		
+	
+3、修饰符号  static
+
+
+			1、修饰属性 
+
+
+			class  Robot{
+
+				static 	int height ;
+
+
+
+
+			}
+		修饰普通属性，该属性可以被直接同过类名调用；
+
+
+		Robot xiaona = new Robot();
+
+		xiaona.height = 175;
+
+		Robot.height = 175;
+
+		为了 节省 内存空间，对于一些  对象共有的属性
+
+		可以添加 static 修饰符号，让该属性 共享；
+
+		static 修饰的属性，在于属于特定的对象，
+
+		因为不属于特定的对象，所以，可以 类名.静态属性;
+
+	
+	2、static 修饰方法
+
+		
+			Math.random();//
+
+
+			对于一些 常见的  工具类方法，为了调用
+
+			方便，将方法的 前面添加static 修饰符号
+
+
+			则，该方法  可以通过类名直接调用;
+
+			形式如Math.random();
+
+		Math类中所有的方法都是 静态方法；
+
+		Math类中所有的属性 都是静态属性；  Math.PI;Math.E;
+			
+		
+		请思考，为什么main()方法要static ？
+
+
+
+
+
+
+	3、  修饰代码块
+
+			类中的      {}
+
+			语法就是 代码块；
+
+			
+			静态属性如何初始化？
+
+			类中的
+
+
+				static   {
+
+				 这就使静态代码块;
+
+					}
+			静态代码块 在类第一次被装载的时候
+			被调用，也只调用一次。
+
+			
+			什么时候 类被类装载，
+
+			java 的装载机制 是懒装载机制 ，
+
+			用到谁才装载谁.
+
+			
+	note:  类中 的代码 顺序   与 执行 无关。
+
+		但是：代码块的执行  是原始的物理顺序...
+
+		一般专业人士会这样写:
+
+				属性
+
+				构造
+
+				块
+
+				静块
+
+				方法
+
+		
+
+
+
+			
+
+class T91{
+
+
+static{
+
+
+		System.out.println("T91  static ................");
+
+
+}
+
+public static void main(String [] args){
+
+
+		Student s = new Student();
+
+		System.out.println(s.id);
+
+}
+
+
+
+}
+
+
+		class Student{
+
+
+
+
+		{
+
+			System.out.println("代码块2....");
+
+		}
+
+
+
+		{
+
+
+			System.out.println("代码块1....");
+
+
+		}
+
+		static{
+
+
+			System.out.println("静态代码块1....");
+
+		}
+
+		 Student(String id,String name,int age){
+
+				this.id =  id ;
+
+				this.name = name;
+				this.age =  age;
+
+				
+			System.out.println("构造1....");
+
+
+		}
+
+		Student (String id,String name,int age,String country){
+
+				this(id,name,age);
+				
+		
+				this.country = country;
+
+
+		}
+
+			 Student(String a,int b){
+
+
+				id = a;
+				age = b;
+
+				country = "美国";
+	
+			}
+
+			Student(){
+
+				//可以是什么语句，自己定
+
+				
+			System.out.println("无参gouzao ....");
+
+
+			}
+
+			
+			public void sing(){
+
+				System.out.println("哼...");
+
+
+			}
+
+
+			public void jump(){
+
+				System.out.println("嘣...");
+
+
+			}
+
+
+
+			String id;
+
+			String name="";
+
+			String   country = "中国";
+
+			int age;
+
+
+
+
+		}
+
+
+
+
+
+
+
+
+
+
+
+
+
+	请  判断上面程序的代码执行顺序？
+
+
+
+
+4、package 关键字   ====〉包
+
+		
+
+		IP=====DNS
+
+			qiaodan1.sohu.com====>IP
+
+						
+
+		互联网的世界 靠   后缀名的唯一授权 来解决重名问题;
+
+
+		在面向对象的开发过程中，需要有一种办法来解决
+
+		类名的重复问题；
+
+
+		它的解决方案是： 前缀.....
+
+		靠package 关键字 为一个类添加前缀。
+
+		请看案例:
+
+		
+
+		package 关键字 可以出现在 程序的第一行，表示为
+		后面的类 定义前缀；
+
+		一旦有package，则后面的类名都有前缀；
+
+
+		
+		java 如何将所有的.class  文件 都 放在一个文件夹
+	
+		中，则不利于检索，所以，java 的解决方法是：
+
+		根据类名的前缀创建对应的文件夹来存放
+
+	
+	如果类名:cn.fzxy.fzxxgcx.xg.n1650412.Tank
+
+	则存放路径为:   cn\fzxy\fzxxgcx\xg\n1650412\Tank.class
+
+	
+	
+	如何更方便的 自动建立对应的文件夹
+
+
+			javac -d .  Tank.java
+
+		 该编译在编译的同时自动创建对应的文件夹，
+		并且将编译后的class文件自动复制。
+
+
+	
+	java cn.fzxy.zhxxgc.xg.n1650411.Tank 
+
+
+	请思考，上面执行的语句，会做什么？
+
+		classpath==.;****jdk\lib
+
+		
+
+
+
+
+
+
+
+
+
+
+
+
+	
+
+
+		
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

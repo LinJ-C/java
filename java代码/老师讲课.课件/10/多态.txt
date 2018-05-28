@@ -1,0 +1,172 @@
+
+同一段程序代码，传递不同的参数，有不同的执行结果，就是面向
+对象的多态性。
+
+出现多态的标识是：用父类来声明对象，用子类来创建对象。
+
+例题：
+
+class A{
+  public int i=1;
+  void go(){
+    System.out.println("This is Class A 's go()");
+           }
+}
+
+class B extends A{
+ public int i=2;
+ public void go(){
+     System.out.println("This is class B's go()");}
+public void go(int i)
+{System.out.println("This is class B's go()888");
+}
+public  static void main(String[] args){
+A a=new B();
+System.out.println(a.i);
+a.go();
+a.go(1);
+a=(B)a;
+System.out.println(a.i);
+a.go();
+a.go(2);
+B b=(B) a;
+System.out.println(b.i);
+b.go();
+b.go(3);
+}
+}
+
+编译时多态
+    根据对象的引用类型来确定是否编译；
+运行时多态
+      a：调用成员变量
+      根据对象的引用类型来确定调用那一个。
+      b：根据对象的运行是类型确定调用那一个。
+
+题目一：
+
+class A{
+int i=1;
+A(){
+int i=1;
+add(1);
+}
+ void add (int j){
+i=i+j;
+}
+}
+
+class B extends A{
+int i=4;
+
+void add(int j){
+i=i+2*j;
+}
+public static void main(String[] args){
+A a=new B();
+System.out.println(a.i);
+}
+}
+
+1?????
+
+
+题目二：
+
+class A{
+int i=1;
+A(){
+int i=1;
+add(1);
+}
+  private void add (int j){
+i=i+j;
+}
+}
+
+class B extends A{
+int i=4;
+
+void add(int j){
+i=i+2*j;
+}
+public static void main(String[] args){
+A a=new B();
+System.out.println(a.i);
+}
+}
+
+2?????
+
+
+题目三：
+
+class A{
+int i=1;
+A(){
+int i=1;
+add(1);
+}
+ void add (int j){
+i=i+j;
+}
+}
+
+class B extends A{
+
+
+void add(int j){
+i=i+2*j;
+}
+public static void main(String[] args){
+A a=new B();
+System.out.println(a.i);
+}
+}
+
+
+3?????????
+
+
+多态的一个应用
+
+class PCI{
+    void start(){}
+    void stop(){}
+}
+
+class NetworkCard extends PCI{
+    public void start(){
+         System.out.println("Send....");
+    }
+    public void stop(){
+          System.out.println("Network Stop");
+    }
+}
+
+class SoundCard extends PCI{
+    public void start(){
+         System.out.println("Du du...");
+    }
+    public void stop(){
+          System.out.println("Sound stop");
+    }
+}
+
+class MainBoard{
+     public void usePCICard(PCI p){
+          p.start();
+          p.stop();
+     }
+}
+
+class Assembler{
+    public static void main(String[] args){
+         MainBoard  mb=new MainBoard();
+         NetworkCard nc=new NetworkCard();
+          mb.usePCICard(nc);
+         SoundCard sc=new SoundCard();
+         mb.usePCICard(sc);
+     }
+}
+

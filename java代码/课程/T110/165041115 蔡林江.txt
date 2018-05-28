@@ -1,0 +1,157 @@
+import java.awt.Color;
+import java.awt.Frame;
+import java.awt.Graphics;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
+import java.awt.event.WindowEvent;
+import java.awt.event.WindowListener;
+
+
+public class Ball  extends Frame {
+	
+	
+	
+	int x = 20 ;
+	
+	int y = 40;
+	
+	
+	
+		
+    public void paint(Graphics g) {
+    	
+    	
+    	//g 就是  该组件的画笔 
+    	
+
+    	
+    	
+    	g.setColor(Color.red);
+    	
+    	
+    	g.fillOval(x, y, 50, 50);
+    	
+    	
+    	
+    	
+    	
+    	
+    	
+    	
+    }
+	
+	
+
+	public static void main(String[] args) {
+
+		
+		new Ball().init();
+		
+
+	}
+
+	
+	
+	public void init(){
+		
+
+		
+		this.setSize(400,300);
+		
+		this.setVisible(true);
+		
+		WindowHandle  ww = new WindowHandle();
+
+		this.addWindowListener(ww);
+
+		KeyHandle  kh = new KeyHandle();
+		MouseHandle km = new MouseHandle();
+		this.addKeyListener(kh);
+		
+		this.addMouseListener(km);
+		 
+		
+		
+	}
+	
+	
+	
+	
+	class KeyHandle implements KeyListener{
+
+		public void keyTyped(KeyEvent e) {
+														
+		}
+
+		public void keyPressed(KeyEvent e) {
+			
+			char c = e.getKeyChar();
+						
+			switch(c){
+					
+			case 'a':   x-=10;break;
+			case 'd':   x+=10;break;
+			case 'w':   y-=10;break;
+			case 's':   y+=10;break;
+									
+			}			
+			//上面只是完成了 坐标值得修改 ，如果想看起来移动，需要重新绘制 
+						
+		    repaint();//它一定会调用  paint			
+											
+		}
+		public void keyReleased(KeyEvent e) {		
+		}
+									
+	}	
+
+}
+     class MouseHandle implements MouseListener{
+    	 
+    	 public void mouseClicked(MouseEvent e) {
+    		 
+    		 System.out.println("点击");
+    		 
+    	 }
+         //鼠标按键在组件上单击（按下并释放）时调用。 
+          public void mouseEntered(MouseEvent e){} 
+         //鼠标进入到组件上时调用。 
+    	 public void mouseExited(MouseEvent e) {}
+    	 // 鼠标离开组件时调用。 
+    	 public void mousePressed(MouseEvent e) {}
+    	 //鼠标按键在组件上按下时调用。 
+    	 public void mouseReleased(MouseEvent e) {}
+    	 // 鼠标按钮在组件上释放时调用。 
+
+    	 
+    	 
+     }
+     
+     class WindowHandle implements WindowListener{
+
+    	 public void windowActivated(WindowEvent e) {}
+    	           //将 Window 设置为活动 Window 时调用。 
+    	 public  void windowClosed(WindowEvent e)  {}
+    	            //因对窗口调用 dispose 而将其关闭时调用。 
+    	 public  void windowClosing(WindowEvent e)  {
+
+
+    	 		System.exit(0);//关闭虚拟机 
+
+    	 }
+    	           // 用户试图从窗口的系统菜单中关闭窗口时调用。 
+    	 public  void windowDeactivated(WindowEvent e)  {}
+    	           // 当 Window 不再是活动 Window 时调用。 
+    	 public  void windowDeiconified(WindowEvent e)  {}
+    	            //窗口从最小化状态变为正常状态时调用。 
+    	 public  void windowIconified(WindowEvent e)  {}
+    	            //窗口从正常状态变为最小化状态时调用。 
+    	 public  void windowOpened(WindowEvent e)  {}
+    	            //窗口首次变为可见时调用。 
+
+
+
+
+    	 }

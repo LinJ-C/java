@@ -1,0 +1,171 @@
+	GUI 开发 (图形用户界面)
+
+1、概述
+
+		就是使用别人已经搞好的 库  调用功能，组装程序；
+
+		java.awt.* 库；
+
+		java.awt.event.* 库；
+
+		javax.swing.* 库；
+
+
+		类型   变量  ；  代表一种  数据的定义；
+		
+		int x;
+		String str;
+		byte[] bb;
+			系统类型;
+		Frame ff;
+			自定义类型；
+
+2、awt 中的常见  组件
+
+		窗口  Frame
+
+		菜单 （菜单条  菜单栏 菜单项）
+
+			MenuBar  Menu  MenuItem
+
+		按钮        Button
+
+		文本框  TextField
+
+		下拉菜单  Choice  
+
+		文本域   TextArea 
+
+		Checkbox  (单选框)  CheckboxGroup
+
+		Checkbox  (复选框)
+
+
+3、 展示一下常见组件
+
+		
+		窗口展示
+		
+		Frame  ff = new Frame(); //创建一个窗口
+
+		ff.setSize(600,800);//设置窗口的大小
+
+		ff.setVisible(true);//让窗口显示
+
+
+		按钮展示
+
+		
+
+		Frame  ff = new Frame(); //创建一个窗口
+
+		Button bt = new Button("OK");
+
+
+		ff.add(bt);
+		
+
+		ff.setSize(433,200);//设置窗口的大小
+
+		ff.setVisible(true);//让窗口显示
+
+
+		展示菜单
+
+
+
+		展示
+
+		文本框
+
+		文本域 
+
+			
+		选择框
+
+		复选框
+
+		面板组件  Panel  （该组件  就是一个平板 该平板式容器 可以
+
+				放置其它组件)
+
+		
+			
+
+4、组件的分类
+
+		不能单独存在的组件  叫做 普通组件；
+					
+				上面的其它都是普通组件；
+
+
+		能够容纳其它组件的组件 叫做  容器；
+
+				Frame就是容器；
+
+				Dialog
+
+				Window 
+
+		
+5、容器中的组件是如何排列的
+
+
+		默认情况下 每一个容器都有一个 默认的排版 风格；
+
+		Frame  的排版风格 为:  BorderLayout
+
+
+		BorderLayout(东西南北中)	
+
+
+		GridLayout(  n*m 格子  一个格子放一个组件)
+
+
+		FlowLayout(  从左到右 从上到下 ，一次放置),默认居中对齐
+
+		
+
+						
+
+		
+
+		
+
+
+
+
+
+
+
+
+
+
+
+
+4、所谓应用开发
+
+
+		所谓的应用开发：就是使用别人开发好的功能（方法),组装自己想要
+
+		的软件；
+
+
+		没完没了  ===》一定 根据  软件类型  来进行 特别 区分的；
+
+		
+
+		常见的应用开发 都是 基本功....
+
+
+
+
+
+
+
+
+
+
+
+
+

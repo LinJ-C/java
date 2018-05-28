@@ -1,0 +1,264 @@
+
+	字符串
+
+1、字符串数据类型
+
+			跟数组差不多，因为太重要，所以，单列；
+
+			五星重要(*****)
+
+
+			意味着，关于字符串的处理应用太多了；
+
+
+			String   变成一个类型；
+
+	为了使用方便，java为这个类型，直接提供了几十个方法，可以被直接调用；
+
+2、创建字符串
+
+		两种形式
+
+			String name="王小二";
+
+			String name  = new String("王小二");
+
+			都行；
+
+
+		
+3、字符串的常见方法
+
+		测字符串的长度；
+
+		name.length();  返回字符串的长度；符号的个数;
+
+		字符串大小写转换
+
+		name.toUpperCase();//name 转大写；
+
+		name.toLowerCase();//name转小写；
+
+		字符串比对
+
+		字符串是否内容相同
+
+			String name1="王晓1"；
+			Strig name2= "王晓2";
+
+			name1.equals(name2)  //字符串的内容比对；
+
+	name1.compareTo(name2)//字符串的大写比对；（对比的从第一个不相同的字符的unicode编码的差值)  
+			if(name1==name2){}//比对的是否为同一个字符串；
+
+
+		字符串的查找式比对
+
+			String str1
+
+			String str2
+
+	     int  str1.indexOf((str2) //检查 str1中是否包含了str2   
+
+			-1 表示不包含
+			如果有，则返回 str2在str1中的位置;第一次位置;
+
+	     str1.lastIndexOf(str2)//str2 最后一次出现的位置；没有-1
+
+			
+	   str1.firstIndexOf(str2)//  )//str2 第一次出现的位置；没有-1
+
+		
+	  
+	字符串匹配
+
+		str1.matches(str2);//  str1 是否匹配  str2 ;
+
+		str2是一个 正则表达式     （*.doc）===》这就是正则表达式
+
+					*环保*.*   这也是个正则表达式
+
+
+		str1.matches(str2)// true
+
+		我们在应用开发中，大量的需要字符串的合法性检查，
+
+		如果采用字符串的比对，则步骤多、时间长，
+	
+		同行会采用匹配比对 就是
+
+		用一个 str1.matches(正则表达式)//来检查，是否匹配，则一次完成
+		效率高，时间短；	
+
+	
+	字符串的替换
+
+		 str1.replace("aaa","bbb");
+
+		将字符串中的"aaa"	替换为"bbb";  原字符串不变，产生新字符换;
+
+		
+	字符串切割
+
+	str1.substring(x);   //将str1字符串从x===>最后的子串切割出，返回；
+
+	str1.substring(start,end)//从str1的start ===>end位置的子串切割出来，返回;
+
+
+	字符串的拆分
+
+		String []   ss = str1.split(".");  //用.号将str1  拆分成子串集合，返回；
+
+	去掉字符串前后的空格
+
+			str1.trim()//去掉str1前后的空格； 中间的空格不去；
+			一般进行数据检查的时候做；
+
+	字符串的转换
+
+			字符串转换为 byte[] ===>字节数组
+
+			byte[] bb = str1.getBytes();   //将字符串str1转换为byte[] ;
+
+
+			转回来
+
+		String str =new String(bb,0,length)//将bb字节数据转换为字符串；
+
+			0表示从哪个位置开始转；length表示转几个；
+
+	字符串个其它数据类型的相互转换
+
+			int x = 88;//如何转换为字符串；
+
+			String str = x+"";	
+
+		普通类型 转换为 字符串的作法就是  在普通数据后面直接+"";
+
+					
+		int x = Integer.parseInt(str1)//将str1转换为int类型
+		float f = Float.parseFloat(str1);//.....
+		double x = Double.parseDouble(str1)//...
+		long l = Long.parseLong(str1)/...
+
+	编码之间的相互转化
+
+String str = "我的中国";
+
+byte[] bb = str.getBytes("编码类型1");//获得某一种类型的编码 数组
+
+String str2 = new String(bb,"编码类型2");  将编码类型1的bb转换为编码类型2的 字符串；
+
+
+		
+
+
+
+
+4、字符串的其它处理方法
+
+	StringTokenizer  这集合，该集合中有几个常见的 进行字符串 切割的方法
+
+	new StringTokenizer("this is, a ,test");//默认按照\r\t\f\n  切割；
+
+	new StringTokenizer("this is, a ,test","#"); 按照指定的串#切割
+
+	new StringTokenizer("this is, a ,test","#",true);按照指定的串#切割，保留切割符号
+
+	StringTokenizer st = new StringTokenizer("this is ,a ,test","\,");
+
+
+     		while (st.hasMoreTokens()) {
+         		System.out.println(st.nextToken());
+     	}
+
+	
+
+
+5、总结
+
+字符串的处理   几乎在所有的应用程序中都遇到，所以常见的处理一定掌握牢靠；
+
+我们应该进行几个   命令切割的练习；
+
+		ping x.x.x.x - t    这种常见的命令行背后一定有一个字符串的切割
+
+		根据  参数的不同  调用不同的  程序代码；
+
+		
+请字符 学习    字符串的  存储空间问题;
+
+		
+		字符串  作为一个 特别重要的 类型，JVM对这个类型数据的存储，
+
+		进行了特别的处理，保存字符串的 内存有三块
+
+
+		栈  ====>保存名字；
+
+		堆===》保存new String()出来的字符串；
+
+		全局代码区====》保存字符串常量   String str="张三";
+
+			全局代码区的字符串常量 不会重复；	
+
+
+
+
+
+
+
+
+
+
+
+
+补充：
+
+		java中的编码问题（程序员 永远会面对一个 乱码问题）
+
+
+		解决的方案====》瞎试
+
+		编码===》
+
+	GBK   
+
+	Unicode（联合国)  Java
+
+	utf-8   (    1  2   3 )===》这是一个可伸缩的字符集  1   2   3   它最省空间
+
+	ISO8859-1(国际组织)===>
+
+
+
+
+一个应用
+
+		搜索引擎  的背后  有一个技术 ===》爬虫技术
+
+
+正则表达式  是进行 字符串匹配的利器
+
+			不需要掌握正册编写规则；		
+
+
+
+			
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+		
+	

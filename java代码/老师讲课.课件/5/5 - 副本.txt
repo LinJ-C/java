@@ -1,0 +1,154 @@
+
+
+	数组
+
+	1、相同类型的数据的集合.
+
+		
+		特点是 大小固定;
+	
+			
+		
+	2、搞出来(定义)
+
+		类型[]  名字;   ===>声明;
+
+		new 类型[个数];  ===>创建;
+
+		double [] heights = new double[90];
+
+
+		String [] names = new String[90];
+
+
+		int []  ages = new int[90];
+
+		char  [] leths = new char[90];
+
+	
+		初始化
+
+		 new 出来的东西可以不初始化，有默认值;
+
+	3、数组的一个属性
+
+		名字.length 属性  得到 数组的长度；
+
+	4、访问数组
+
+		名字[下标]  0.....最后
+
+
+		一一访问;
+
+		就代表可以一一放东西；
+
+	5、遍历
+
+		老的方式
+
+		double [] heights = new double[90];
+
+		for(int i=0;i<heights.length ;i++){
+
+			Sysetm.out.println(heights[i]);
+
+		}
+
+		java提供了加强型for
+
+		for(  int x:heights){
+
+			System.out.println(x);
+
+		}
+		
+
+		String [] names = new String[90];
+
+			
+		for(String name:names){
+
+			System.out.println(name);
+
+		}
+
+		for(元素类型 名字:任意集合){
+
+
+			System.out.println(名字);
+
+		}
+		
+
+	6、排序
+
+
+		用别人排
+
+			Arrays.sort(数组);
+
+			就将数组排序;
+
+		自己排
+
+			如下三个算法
+				冒泡
+				选择
+				快速
+		
+	7、数组之间的相互copy
+
+		int [] aa = {11,22,33,344234,12,41,234,213,41,234,1234};
+
+		
+
+		int [] bb = new int[5];
+
+
+	System.arraycopy(aa,起始位置,目的地，起始位置,数量);
+
+
+		System.array(aa,aa.length-5,bb,0,5);
+
+
+		
+
+	8、彩票算法
+
+			用乒乓球吐球来解决  随机数重复问题..
+
+			
+
+
+	9、知识点
+
+			Math.random()//产生随机数[0,1)
+
+			(int)(Math.random()*10)  [0   9]
+
+
+			(int)(Math.random()*41)+60 [60...100]
+
+			
+
+
+
+
+
+
+
+
+	
+
+
+			
+
+		
+
+
+	
+
+	
+
+	

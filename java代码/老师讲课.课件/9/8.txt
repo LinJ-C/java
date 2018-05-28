@@ -1,0 +1,369 @@
+面向过程  
+1、对象对象
+
+
+	对象就是拥有    数据和方法的一个组件，
+
+
+	用这种组件来 组装 软件 能够实现 更大规模的软件。
+
+
+
+	Frame   f =new Frame();   
+
+
+	该组件   就叫做 对象。
+
+
+2、对象怎么来？ 
+
+
+		对象创建得到 ；new XXX():
+
+
+		int  x = 3;
+
+		Frame  f = new Frame();
+
+
+		基础类型都是 java  设计好的；
+
+8+2   byte short int long  float double char  boolean  String  数组
+
+		其它类型都是  其它程序员 创建的；
+
+		要创建对象，必须有该对象的类型；
+
+
+		该类型可以用别人创建好的，也可以自己创建；
+
+
+3、(类型)的创建的 类的定义 
+
+
+		类中定义的就是  对象需要的 属性和方法
+
+
+		class  XXX{
+
+			//属性的定义；
+
+
+			//方法的定义；
+
+
+
+		}
+
+
+
+		举例说明类型的定义
+
+
+		
+
+		class Student{
+
+				String id;
+
+				String name;
+
+				char sex ;
+
+				int age;
+
+				double  height;
+				double weight;
+
+		....//没完没了   怎么算合适  够用算合适
+
+
+				findScore();
+
+
+				selectCourse();
+
+				....
+				
+
+		}
+
+
+
+		class Robot{
+
+				String id;
+
+				String name;
+
+				String type;
+
+				Color  color;
+
+
+				leftMove();
+
+				rightMove();
+
+				upMove();
+
+				downMove();
+
+
+			}
+
+
+
+
+
+
+4、使用类创建对象
+
+
+		
+		三步骤
+
+			步骤1： 起名字(声明)
+
+
+				Student  tom;
+
+
+			步骤2：创建对象
+
+
+				tom  =   new  Student();
+
+
+			步骤3:   初始化
+
+
+				tom.id= "165041111";
+
+				tom.name="张伟";
+
+				tom.age = 20;
+
+				tom.height = 175.6;
+
+				tom.weight = 140.3;
+
+			
+
+
+		Student  tom = new Student();
+
+
+		tom ===>栈中；
+
+		new Student()==> 对象在堆中;
+	
+		我们希望
+Student  jerry  = new Student("165041211","赵四",20,176.3,152.1);
+
+
+		如何在创建对象的同时，完成属性的设置。
+
+		Java 的设计者 精巧的设计了一个函数，
+
+
+		在创建的同时调用， 在函数的内部完成
+
+
+		属性的设置，
+
+		该函数  必须 程序员自己编写 ，
+
+		但是该函数  需要系统调用；
+
+
+		
+		
+	
+			
+
+
+
+
+		class Student{
+
+
+			String id;
+
+			String name;
+
+			int age;
+
+
+			Student(String a,String b,int c){
+
+				id = a;
+
+				name = b;
+
+				age = c;
+
+
+			}
+
+			public void sing(){
+
+				System.out.println("哼...");
+
+
+			}
+
+
+			public void jump(){
+
+				System.out.println("嘣...");
+
+
+			}
+
+
+		}
+
+
+
+
+		Student  lisi  = new Student();
+
+		lisi.id="134";
+
+		lisi.name="张艺源";
+
+		lisi.age = 20;
+
+	Student  lisi  = new Student("134","张艺源",20);
+		
+
+
+
+5、构造函数 
+
+
+		一个类中，除了有属性和方法外，又多了一个语法，
+
+		叫做构造函数。
+
+
+
+		构造函数的编写必须符合 
+
+		1、无返回；
+
+		2、和类名一样；
+
+	
+
+		构造函数不是函数，它的本质就是和类型相同有参数
+
+
+		的语法块，在创建对象的被系统调用；
+
+
+		构造函数的语法，设计出来就是为了 方便初始化的；
+
+
+		所以：构造函数可以 重载;(不同的参数)
+
+
+
+		构造函数 设计出来  就是方便程序员  初始化用的；
+
+
+		
+6、构造函数如何被调用
+
+
+		new Student(); 创建对象的时候，Java系统做三件事
+
+
+		1、默认初始化；（堆都有默认值)
+
+		2、直接初始化；(class中如果有默认值)
+
+		3、调用构造函数；
+
+
+		
+	  可以考虑 翻一翻  对象生成过程的内存图 
+
+
+7、对象的使用
+
+
+	  	对象.属性名；   //使用属性；
+
+		对象.方法();// 使用方法 ；
+
+
+
+		 稍微总结：
+
+				类的定义；
+
+				对象的定义；
+					
+
+				对象的使用；
+
+
+				Frame  f = new Frame();
+
+
+
+8、 垃圾回收机制
+
+
+			Java 一大卖点就是垃圾回收器；
+
+
+			new XXX();
+
+		
+			JVM 内部专门开辟了一个 系统级的线程，
+
+			负责垃圾回收(无用内存),将程序员解放。
+
+
+			
+
+		什么是垃圾？
+			
+
+			无用的对象的就是垃圾；
+
+			
+	对象什么时候没用？
+
+			
+		对象的名字　　生存期　结束　对象就不能访问；
+
+		对象就成为垃圾；
+
+
+		
+	Java 对象的回收　　不需要程序员　管理，由系统自动回收；
+
+
+		System.gc();//该方法就唤醒　回收器;
+
+
+			//你唤醒它，它也不一定工作，
+
+
+			// 它有自己的算法，来决定是否回收。
+
+
+	//编程的时候，有事没事调用一下System.gc();　
+
+
+
+
+
+
+
+	
+
