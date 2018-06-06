@@ -1,0 +1,45 @@
+
+public class T12 {
+
+	/**
+	 * @param args
+	 */
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		
+		send t1 = new send();
+		 
+	  receive s1 = new receive();
+	   
+	  t1.start();
+	  s1.start();
+		
+		
+		
+
+	}
+
+}
+
+class send extends Thread{
+	public void run(){
+		while(true){
+	    System.out.println("窟僕。。。。。。。。。。。。");
+		}
+
+	}
+	
+	
+	
+}
+class receive extends Thread{
+	public void run(){
+	    while(true){
+		System.out.println("俊辺&&&&&&&&&&&&&&&&&&&&&*&&&&");
+	
+	    }
+	}
+	
+	
+	
+}

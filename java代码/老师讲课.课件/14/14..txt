@@ -1,0 +1,226 @@
+
+
+
+
+	java.sql.包;
+
+1、java.sql包概述
+
+
+	该包是 java提供的访问数据库相关的类组成一个包；
+
+
+	这些包用来访问数据库变成了一个常见技术JDBC。(java DB connection)
+
+
+
+2、访问数据库技术概述
+
+
+	几个概念:
+
+          DB==>数据库;(一堆相关表的集合)
+
+	 DBMS==>数据库管理系统；  Oracle  MYSQL  DB2  SQLServer
+
+         DBS===>数据库系统;  基于数据库的一套软件系统；
+
+
+
+
+
+
+	程序===>SQL===>DBMS===>DB
+
+
+	DBMS===>对外提供接口(函数)====>函数的名字一样吗?
+
+
+			   access
+
+		          Oracle
+
+	程序 ===〉ODBC	 SQLServer
+
+		         MySQLserver
+
+
+
+
+3、连接数据库的两种方式
+
+
+
+	方式1：    通过ODBC连接；
+
+
+			程序====〉ODBC===>DBMS====>DB
+
+
+
+	方式2：     直接连接；
+
+			程序====>DBMS=====>DB
+
+
+		
+		那个好？
+
+			不确定。
+
+
+		真实的情况是99%都是 性能优先。
+
+
+
+	方式1：用到的 类    jdk 标准库 提供支持(jdk1.8以下)
+
+
+	方式2；用到的类（驱动）    需要 找 特定厂商下载；
+
+
+	
+
+
+4、访问数据库的相关类
+
+
+
+		java提供了一套接口，这套接口
+
+
+			
+		与数据库无关， 与访问方式无关，
+
+
+		通过这个接口，可以实现 访问数据库；
+
+
+
+		DriverManager 类   驱动管理器
+
+
+		Connection  类  连接类 
+
+
+		Statement  类   语句类 
+
+
+		ResultSet  类    查询的结果类
+
+
+
+
+5、访问数据库的步骤
+
+		
+
+		1、加载驱动
+
+
+			Class.forName(***************);	
+
+
+		2、建立连接
+
+
+
+	Connection conn = DriverManager.getConnection(url,username,password)	
+
+
+
+		3、创建语句对象
+
+
+		Statement stmt = conn.createStatement();
+
+
+
+		4、执行语句
+
+			select  update delete insert
+
+			(CRUD  增删查改)
+
+
+		ResultSet rs = stmt.executeQuery(查询语句);
+
+		int x =	stmt.executeUpdate(增删改);
+
+
+
+		5、处理结果
+
+
+			增删改语句的结果 x是整数，
+			代表  该语句 影响的行数；
+
+			一般无须处理；
+
+
+			查询结果:
+
+			ResultSet rs 它是查询的结果表格;
+
+			只有一种处理，就是遍历:
+
+		加入：表格有4列，无数行，则遍历代码如下:
+
+
+			while(rs.next()){
+
+
+
+				rs.getXXX(1);
+
+				rs.getXXX(2);
+
+				rs.getXXX(3);
+
+				rs.getXXX(4);
+
+
+			}			
+			
+		rs.next() 还有吗，来一行；没有 不来；	
+
+			
+			
+6、案例
+
+		
+
+			搞一个库；
+
+			SQLServer 
+
+
+			
+
+
+
+
+		SQL 注入（利用DBMS的 漏洞，用万能密码进系统)
+
+		怎么避免：我不会。
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

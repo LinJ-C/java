@@ -1,0 +1,51 @@
+
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.Statement;
+
+
+
+public class T141 {
+
+	
+	public static void main(String[] args) throws Exception {
+		
+		String  driver_name="sun.jdbc.odbc.JdbcOdbcDriver";
+		
+		Class.forName(driver_name);
+		
+		String url = "jdbc:odbc:1";
+		
+		String username="";
+		
+		String password="";
+		
+		Connection conn =DriverManager.getConnection(url,username,password);
+		
+				
+		Statement stmt = conn.createStatement();
+
+		for(int i=1;i<50;i++){
+
+	         String [] b = {"ÁÖ","Ñî","³É"};
+	         int d = 1+(int)(Math.random()*3);
+	         String f=b[d]+i;
+	         int c = (int)(Math.random()*21)+18;
+		
+		String sql = "insert into b1(id,name,age) values("+i+",'"+f+"',"+c+")";
+
+			
+
+
+		stmt.executeUpdate(sql);
+		}
+		
+
+	
+		
+		conn.close();	
+		
+	}
+	
+
+}
